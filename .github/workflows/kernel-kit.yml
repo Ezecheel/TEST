@@ -4,7 +4,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
+    container:
+      image: debian:bookworm-slim
     continue-on-error: true
+    strategy:
+      matrix:
+        include:
+          - kernel-kit-config: 6.1.x-x86_64
+            image: debian:bookworm-slim
     steps:
       - uses: actions/checkout@v3
       - name: Install dependencies
